@@ -2,11 +2,11 @@ networks:
   front:
     ipam:
       config:
-        - subnet: 10.0.0.0/16
+        - subnet: 172.31.0.0/20
   back:
     ipam:
       config:
-        - subnet: 10.10.0.0/16
+        - subnet: 172.31.128.0/20
 
 volumes:
   socket:
@@ -61,4 +61,4 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/includes:/etc/nginx/includes
     depends_on:
-      - db
+      - app
