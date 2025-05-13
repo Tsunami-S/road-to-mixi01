@@ -24,8 +24,14 @@ test-down:
 test-restart:
 	$(TEST_COMPOSE) down -v && $(TEST_COMPOSE) up -d
 
-test:
-	@sh ./test/test.sh
+test-normal:
+	./test/test.sh
+
+test-allow:
+	./test/test.sh allowed
+
+test-not-allow:
+	./test/test.sh not_allow
 
 test-app:
 	$(COMPOSE) exec app go test ./test/... ./handler/... ./repository/... -v

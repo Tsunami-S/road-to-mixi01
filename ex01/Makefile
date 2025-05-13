@@ -25,7 +25,7 @@ test-restart:
 	$(TEST_COMPOSE) down -v && $(TEST_COMPOSE) up -d
 
 test:
-	@sh ./test/test.sh
+	./test/test.sh
 
 test-app:
 	$(COMPOSE) exec app go test ./test/... ./handler/... ./repository/... -v

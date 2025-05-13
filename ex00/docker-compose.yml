@@ -1,12 +1,8 @@
 networks:
-  front:
+  sns-net:
     ipam:
       config:
-        - subnet: 172.31.0.0/20
-  back:
-    ipam:
-      config:
-        - subnet: 172.31.128.0/20
+        - subnet: 172.31.0.0/16
 
 volumes:
   socket:
@@ -21,7 +17,7 @@ services:
     image: nginx:latest
     container_name: reverse_proxy
     networks:
-      - front
+      - sns-net
     ports:
       - "8080:80"
     volumes:

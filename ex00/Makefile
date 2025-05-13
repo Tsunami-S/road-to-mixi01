@@ -25,7 +25,7 @@ test-restart:
 	$(TEST_COMPOSE) down -v && $(TEST_COMPOSE) up -d
 
 test:
-	@sh ./test/test.sh
+	./test/test.sh
 
 log:
 	$(COMPOSE) logs app

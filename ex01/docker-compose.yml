@@ -1,12 +1,8 @@
 networks:
-  front:
+  sns-net:
     ipam:
       config:
-        - subnet: 172.31.0.0/20
-  back:
-    ipam:
-      config:
-        - subnet: 172.31.128.0/20
+        - subnet: 172.31.0.0/16
 
 volumes:
   socket:
@@ -25,8 +21,7 @@ services:
     ports:
       - "1323:1323"
     networks:
-      - front
-      - back
+      - sns-net
     environment:
       TZ: "Asia/Tokyo"
       MYSQL_ALLOW_EMPTY_PASSWORD: yes
@@ -40,7 +35,7 @@ services:
     container_name: db
     hostname: db
     networks:
-      - back
+      - sns-net
     volumes:
       - ./mysql/my.cnf:/etc/mysql/my.cnf
     environment:
@@ -52,7 +47,7 @@ services:
     image: nginx:latest
     container_name: reverse_proxy
     networks:
-      - front
+      - sns-net
     ports:
       - "8080:80"
     volumes:
